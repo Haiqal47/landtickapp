@@ -1,0 +1,145 @@
+.header {
+  padding: 120px 0px 0px 120px;
+  font-family: "Avenir";
+}
+.textutama {
+  font-size: 30px;
+}
+.nav {
+  background-image: linear-gradient(to bottom, #ec7ab7, #ec7a7a);
+  width: 186px;
+  height: 35px;
+  border-radius: 15px 15px 100px 15px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+.navkanan {
+  background-image: linear-gradient(to bottom, #ec7ab7, #ec7a7a);
+  width: 186px;
+  height: 35px;
+  border-radius: 15px 15px 15px 100px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+.hnav {
+  display: flex;
+  justify-content: center;
+  border: 2px solid grey;
+  margin: 20px 270px 0px 111px;
+  border-radius: 8px;
+}
+.text {
+  font-size: 24px;
+  font-family: "Avenir";
+  font-weight: 800;
+}
+.text2 {
+  font-family: "Avenir";
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.text3 {
+  font-family: "Avenir";
+  opacity: 100%;
+  color: #dc7d0b;
+  background-color: #fdd9e5;
+  padding-top: 2px;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.rounded {
+  border: 2px solid #ec7ab7;
+  border-radius: 30px;
+  width: 20px;
+  height: 20px;
+}
+.rounded2 {
+  border: 2px solid #ec7ab7;
+  background-color: #ec7ab7;
+  border-radius: 30px;
+  width: 20px;
+  height: 20px;
+}
+.vertical {
+  display: flex;
+  border-left: 2px solid grey;
+  margin: 5px 0px 5px 9px;
+  height: 60px;
+}
+.div {
+  display: flex;
+}
+.divargo {
+  margin: 25px 50px 70px 20px;
+}
+.divr {
+  margin: 40px 20px 70px 0px;
+}
+.text4 {
+  font-family: "Avenir";
+  font-size: 20px;
+  font-weight: bold;
+}
+.text5 {
+  font-family: "Avenir";
+  opacity: 50%;
+}
+.divtgl {
+  margin: 25px 20px 70px 0px;
+}
+.divtgl2 {
+  margin: 0px 40px 30px 0px;
+}
+.divid {
+  display: flex;
+}
+.divid2 {
+  display: flex;
+  opacity: 50%;
+}
+.text6 {
+  margin: 0px 25px 0px 23px;
+}
+.text7 {
+  margin: 0px 67px 0px 20px;
+}
+.text8 {
+  font-family: "Avenir";
+  font-weight: bold;
+  font-size: 30px;
+  text-align: end;
+}
+.text9 {
+  font-weight: bold;
+}
+.btn {
+  background-image: linear-gradient(to right, #ec7ab7, #ec7a7a);
+  border-color: #0000;
+  border-radius: 5px;
+  color: white;
+  padding: 3px 30px;
+}
+.btndiv {
+  display: flex;
+  justify-content: center;
+  margin: 237px 0px 0px 10px;
+}
+.divkrt {
+  padding: 0px 20px 30px 20px;
+  text-align: end;
+}
+.divv {
+  padding: 20px 0px 120px 60px;
+}
+.a {
+  display: flex;
+  justify-content: space-between;
+}
+.divtgl3 {
+  margin: 0px 0px 0px 20px;
+}

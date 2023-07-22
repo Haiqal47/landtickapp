@@ -1,0 +1,7 @@
+.head {
+  padding-top: 100px;
+}
+.div {
+  display: flex;
+  justify-content: space-around;
+}

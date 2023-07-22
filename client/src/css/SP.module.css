@@ -1,0 +1,66 @@
+.header {
+  padding: 120px 0px 0px 120px;
+  font-family: "Avenir";
+}
+.nav {
+  background-image: linear-gradient(to bottom, #ec7ab7, #ec7a7a);
+  width: 186px;
+  height: 35px;
+  border-radius: 15px 15px 100px 15px;
+  padding-left: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+.div {
+  border: 2px solid grey;
+  border-radius: 8px;
+  width: 670px;
+  height: 160px;
+}
+.divid {
+  display: flex;
+}
+.divid2 {
+  display: flex;
+  opacity: 50%;
+}
+.text6 {
+  margin: 0px 25px 0px 23px;
+}
+.text7 {
+  margin: 0px 67px 0px 20px;
+}
+.divh {
+  width: 447px;
+  height: 137px;
+}
+.divh1 {
+  border: 2px solid lightgray;
+  border-radius: 8px 8px 0px 0px;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.divh2 {
+  border: 2px solid lightgray;
+  border-radius: 0px 0px 8px 8px;
+  background-color: lightgray;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.btndiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.btn {
+  background-image: linear-gradient(to right, #ec7ab7, #ec7a7a);
+  border-color: #0000;
+  border-radius: 5px;
+  color: white;
+  padding: 3px 30px;
+  width: 100%;
+  margin-top: 15px;
+}
