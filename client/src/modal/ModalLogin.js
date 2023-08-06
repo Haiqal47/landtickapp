@@ -94,6 +94,7 @@ function ModalLogin(props) {
               onChange={handleChange}
               value={form.password}
               className="form-control"
+              type="password"
               name="password"
               placeholder="Password"
               required

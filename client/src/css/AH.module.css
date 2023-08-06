@@ -1,7 +1,9 @@
 .head {
   padding-top: 100px;
+  padding-left: 120px;
+  padding-right: 120px;
 }
 .div {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }

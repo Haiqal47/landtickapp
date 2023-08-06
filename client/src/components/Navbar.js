@@ -100,7 +100,6 @@ function Nav() {
   const adminHome = () => navigate("/admin");
   const addTicket = () => navigate("/addticket");
   const myTicket = () => navigate("/myticket");
-  const showPayment = () => navigate("/payment");
 
   const [state, dispatch] = useContext(UserContext);
   console.log(state.user);
@@ -194,15 +193,6 @@ function Nav() {
                         Tiket Saya
                       </div>
                     </DropdownItem>
-                    <DropdownItem
-                      onClick={() => setOpen(false)}
-                      style={styles.dropdown2}
-                    >
-                      <img src={bill} alt="bill" />
-                      <div onClick={showPayment} style={styles.text2}>
-                        Payment
-                      </div>
-                    </DropdownItem>
                     <hr />
                     <DropdownItem
                       onClick={() => setOpen(false)}
@@ -230,7 +220,6 @@ function Nav() {
         )}
         <ModalLogin
           show={showLogin}
-          showLogin={setShowLogin}
           onHide={() => setShowLogin(false)}
           showRegister={setShowRegister}
         />

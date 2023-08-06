@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Kereta from "../assets/img/kereta.png";
 import Form from "react-bootstrap/Form";
 import Rounded from "../assets/img/Rounded.png";
-import { API } from "../config/api";
+import { API, setAuthToken } from "../config/api";
 import { useQuery, useMutation } from "react-query";
 import { duration } from "../func/duratiion";
 import ModalLogin from "../modal/ModalLogin";
@@ -12,6 +12,7 @@ import { UserContext } from "./context/UserContext";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import Arrow from "../assets/img/Arrow.png";
+import { Table } from "react-bootstrap";
 
 const styles = {
   body: {
@@ -36,6 +37,7 @@ const styles = {
     backgroundColor: "#F2F2F2",
     position: "absolute",
     top: "320px",
+    left: "10px",
     width: "1060px",
     height: "190px",
     boxShadow: "0px 5px 5px 0px grey",
@@ -78,7 +80,7 @@ const styles = {
   },
   krt5: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "end",
     paddingTop: "10px",
   },
   dropdown: {
@@ -113,38 +115,43 @@ const styles = {
     paddingTop: "200px",
     paddingBottom: "50px",
   },
-  text5: {
-    paddingRight: "55px",
-    paddingLeft: "50px",
-  },
-  text7: {
-    paddingRight: "55px",
-  },
-  text6: {
-    paddingLeft: "140px",
-    paddingRight: "100px",
-  },
+  // text5: {
+  //   paddingRight: "55px",
+  //   paddingLeft: "50px",
+  // },
+  // text7: {
+  //   paddingRight: "55px",
+  // },
+  // text6: {
+  //   paddingLeft: "140px",
+  //   paddingRight: "100px",
+  // },
   binfo: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    paddingLeft: "150px",
+    paddingRight: "200px",
+    borderColor: "white",
   },
   body21: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     border: "2px groove",
     borderRadius: "5px",
     margin: "20px 120px 20px 120px",
-    padding: "20px 0px 20px 0px",
+    padding: "20px 100px 20px 70px",
     cursor: "pointer",
   },
   textt: {
-    paddingRight: "50px",
-    paddingLeft: "50px",
+    // paddingRight: "50px",
+    // paddingLeft: "50px",
     fontWeight: "bold",
+    borderColor: "white",
   },
   text21: {
-    paddingRight: "100px",
-    paddingLeft: "125px",
+    // paddingRight: "100px",
+    // paddingLeft: "125px",
+    borderColor: "white",
   },
   text31: {
     fontWeight: "100",
@@ -158,6 +165,7 @@ const styles = {
 
 function MainContent() {
   const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
   const [state] = useContext(UserContext);
   const navigate = useNavigate();
   const [showDetail, setShowDetail] = useState(false);
@@ -165,6 +173,9 @@ function MainContent() {
   const handleShowDetail = () => setShowDetail(true);
 
   const myTicket = () => navigate("/myticket");
+  const toHome = () => navigate("/");
+
+  setAuthToken(localStorage.token);
 
   const { data: station } = useQuery("stationCache", async () => {
     try {
@@ -228,6 +239,8 @@ function MainContent() {
 
   const [search, setSearch] = useState(false);
 
+  console.log("ini state :", state);
+
   const handleSearch = (e) => {
     e.preventDefault();
     form.start_station_id === "" && form.destination_station_id === ""
@@ -255,7 +268,7 @@ function MainContent() {
                   onChange={handleChange}
                   value={form.start_station_id}
                   name="start_station_id"
-                  className="w-100"
+                  className="w-100 p-1 px-2"
                 >
                   <option value="" hidden>
                     Stasiun Keberangkatan
@@ -268,17 +281,6 @@ function MainContent() {
                     ))}
                 </select>
               </div>
-              <div style={styles.krt5}>
-                <div>
-                  <div style={styles.text2}>Tanggal Berangkat</div>
-                  <Form.Control type="date" placeholder="DD-MM-YY" />
-                </div>
-                <Form.Check
-                  type="checkbox"
-                  label="Pulang Pergi"
-                  style={styles.cb}
-                />
-              </div>
             </div>
             <img src={Rounded} alt="Rounded" style={styles.rounded}></img>
             <div style={styles.krt7}>
@@ -288,7 +290,7 @@ function MainContent() {
                   onChange={handleChange}
                   value={form.destination_station_id}
                   name="destination_station_id"
-                  className="w-100"
+                  className="w-100 p-1 px-2"
                 >
                   <option value="" hidden>
                     Stasiun Tujuan
@@ -302,22 +304,6 @@ function MainContent() {
                 </select>
               </div>
               <div style={styles.krt5}>
-                <div style={styles.dropdown}>
-                  <div style={styles.text2}>Dewasa</div>
-                  <Form.Control
-                    type="number"
-                    min="0"
-                    aria-label="Default select example"
-                  ></Form.Control>
-                </div>
-                <div style={styles.dropdown}>
-                  <div style={styles.text2}>Bayi</div>
-                  <Form.Control
-                    type="number"
-                    min="0"
-                    aria-label="Default select example"
-                  ></Form.Control>
-                </div>
                 <button onClick={handleSearch} style={styles.button}>
                   Cari Tiket
                 </button>
@@ -327,50 +313,61 @@ function MainContent() {
         </div>
       </div>
       <div style={styles.info}>
-        <div>
-          <div style={styles.binfo}>
-            <div style={styles.text5}>Nama Kereta</div>
-            <div className="mx-4 px-4">Berangkat</div>
-            <div style={styles.text7} className="mx-5">
-              Tiba
-            </div>
-            <div className="mx-4">Durasi</div>
-            <div style={styles.text6}>Harga Per Orang</div>
-          </div>
+        <Table>
+          <thead>
+            <tr style={styles.binfo}>
+              <th>Nama Kereta</th>
+              <th>Berangkat</th>
+              <th>
+                <img src={Arrow} alt="arrow" style={styles.img2}></img>
+              </th>
+              <th>Tiba</th>
+              <th>Durasi</th>
+              <th>Harga Per Orang</th>
+            </tr>
+          </thead>
           {tickets?.map((e) => {
             return (
-              <div>
-                <div
+              <tbody>
+                <tr
                   onClick={() => {
-                    return buyTicket.mutate(e.id);
+                    return (
+                      <div>
+                        {state.user.role === "admin"
+                          ? toHome
+                          : buyTicket.mutate(e.id)}
+                      </div>
+                    );
                   }}
                   key={e.id}
                   style={styles.body21}
                 >
-                  <div style={styles.textt}>
+                  <td style={styles.textt}>
                     <div>{e.name_train}</div>
                     <div style={styles.text31}>{e.type_train}</div>
-                  </div>
-                  <div style={styles.textt}>
+                  </td>
+                  <td style={styles.textt}>
                     <div>{e.start_time}</div>
                     <div style={styles.text31}>{e.start_station?.name}</div>
-                  </div>
-                  <img src={Arrow} alt="arrow" style={styles.img2}></img>
-                  <div style={styles.textt}>
+                  </td>
+                  <td style={styles.textt}>
+                    <img src={Arrow} alt="arrow" style={styles.img2}></img>
+                  </td>
+                  <td style={styles.textt}>
                     <div>{e.arrival_time}</div>
                     <div style={styles.text31}>{e.destination?.name}</div>
-                  </div>
-                  <div style={styles.textt}>
+                  </td>
+                  <td style={styles.textt}>
                     {duration(e.arrival_time, e.start_time)}
-                  </div>
-                  <div style={styles.text21} className="text-danger">
+                  </td>
+                  <td style={styles.text21} className="text-danger">
                     {convertRupiah(e.price)}
-                  </div>
-                </div>
-              </div>
+                  </td>
+                </tr>
+              </tbody>
             );
           })}
-        </div>
+        </Table>
       </div>
       <Modal size="lg" show={showDetail} onHide={handleCloseDetail}>
         <Modal.Body className="text-center">
@@ -388,8 +385,17 @@ function MainContent() {
           </div>
         </Modal.Body>
       </Modal>
-      <ModalLogin show={showLogin}></ModalLogin>
-      <ModalRegister></ModalRegister>
+      <ModalLogin
+        show={showLogin}
+        showLogin={setShowLogin}
+        onHide={() => setShowLogin(false)}
+        showRegister={setShowRegister}
+      />
+      <ModalRegister
+        show={showRegister}
+        showLogin={setShowLogin}
+        onHide={() => setShowRegister(false)}
+      />
     </div>
   );
 }

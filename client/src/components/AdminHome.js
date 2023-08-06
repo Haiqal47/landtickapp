@@ -3,21 +3,22 @@ import cssAH from "../css/AH.module.css";
 import search from "../assets/img/search.png";
 import edit from "../assets/img/edit.png";
 import trash from "../assets/img/trash.png";
-import { FormControl, Modal, ModalBody } from "react-bootstrap";
+import { FormControl, Modal, ModalBody, Tab, Table } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import cssModule from "../css/MT.module.css";
 import landtickp from "../assets/img/landtickp.png";
 import trainp from "../assets/img/trainp.png";
 import qr from "../assets/img/qr.png";
 import { useMutation, useQuery } from "react-query";
-import { API } from "../config/api";
+import { API, setAuthToken } from "../config/api";
 import { useNavigate } from "react-router-dom";
 
 function AdminHome() {
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
+
+  setAuthToken(localStorage.token);
 
   const convertRupiah = (price) => {
     return new Intl.NumberFormat("id-ID", {
@@ -79,63 +80,59 @@ function AdminHome() {
   console.log("list transaction", listTransaction);
   return (
     <div className={cssAH.head}>
-      <div>List Transaksi</div>
-      <div className={cssAH.div}>
-        <div>No</div>
-        <div>Users</div>
-        <div>Tiket</div>
-        <div>Bukti Transfer</div>
-        <div>Status Payment</div>
-        <div>Action</div>
-      </div>
-      <hr />
-      {listTransaction?.map((data, index) => {
-        return (
-          <div>
-            <div className={cssAH.div}>
-              <div>{index + 1}</div>
-              <div>{data.user?.name}</div>
-              <div>
-                {data.ticket.start_station?.name} -{" "}
-                {data.ticket.destination?.name}
-              </div>
-              <div>Bca.jpg</div>
-              <div>
-                {data.status === "pending" && (
-                  <td className="text-warning">{data.status}</td>
-                )}
-                {data.status === "approved" && (
-                  <td className="text-success">{data.status}</td>
-                )}
-                {data.status === "cancel" && (
-                  <td className="text-danger">{data.status}</td>
-                )}
-              </div>
-              <div>
-                <img
-                  onClick={() => handleDetailInvoice(data)}
-                  style={{ cursor: "pointer" }}
-                  src={search}
-                  alt="search"
-                />
-                <img
-                  style={{ cursor: "pointer" }}
-                  onClick={setOpen}
-                  src={edit}
-                  alt="edit"
-                />
-                <img
-                  onClick={() => handleDelete(data.id)}
-                  style={{ cursor: "pointer" }}
-                  src={trash}
-                  alt="trash"
-                />
-              </div>
-            </div>
-            <hr />
-          </div>
-        );
-      })}
+      <h2 className="mb-4">List Transaksi</h2>
+      <Table>
+        <thead>
+          <tr className={cssAH.div}>
+            <th className="me-5">No</th>
+            <th className="me-5">Users</th>
+            <th className="mx-5 px-5">Tiket</th>
+            <th>Status Payment</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <hr />
+        {listTransaction?.map((data, index) => {
+          return (
+            <tbody>
+              <tr className={cssAH.div}>
+                <td>{index + 1}</td>
+                <td>{data.user?.name}</td>
+                <td>
+                  {data.ticket.start_station?.name} -{" "}
+                  {data.ticket.destination?.name}
+                </td>
+                <td>
+                  {data.status === "pending" && (
+                    <td className="text-warning">{data.status}</td>
+                  )}
+                  {data.status === "approved" && (
+                    <td className="text-success">{data.status}</td>
+                  )}
+                  {data.status === "cancel" && (
+                    <td className="text-danger">{data.status}</td>
+                  )}
+                </td>
+                <td>
+                  <img
+                    onClick={() => handleDetailInvoice(data)}
+                    style={{ cursor: "pointer" }}
+                    src={search}
+                    alt="search"
+                  />
+                  <img
+                    onClick={() => handleDelete(data.id)}
+                    style={{ cursor: "pointer" }}
+                    src={trash}
+                    alt="trash"
+                  />
+                </td>
+              </tr>
+              <hr />
+            </tbody>
+          );
+        })}
+      </Table>
       {open2 && (
         <Modal show={open2} data={detailInvoice}>
           <Modal.Body>
@@ -250,47 +247,6 @@ function AdminHome() {
                 </div>
               </div>
             </div>
-          </Modal.Body>
-        </Modal>
-      )}
-      {open && (
-        <Modal size="sm" show={open}>
-          <Modal.Body>
-            <div className="d-flex justify-content-between">
-              <div className={cssModule.nav}>
-                <img src={landtickp} alt="landtickp" />
-                <img src={trainp} alt="trainp" className="px-2" />
-              </div>
-              <button
-                onClick={() => setOpen(false)}
-                className="border-0 bg-white text-danger p-0"
-                style={{ fontSize: 30, fontWeight: "bold" }}
-              >
-                X
-              </button>
-            </div>
-            <form>
-              <FormControl
-                className="my-3"
-                type="text"
-                placeholder="1"
-                disabled
-              />
-              <FormControl type="text" placeholder="Anto" disabled />
-              <FormControl
-                className="my-3"
-                type="text"
-                placeholder="Surabaya-Jakarta"
-                disabled
-              />
-              <FormControl type="text" placeholder="bca.jpg" disabled />
-              <FormControl
-                className="my-3"
-                type="text"
-                placeholder="Approved"
-              />
-              <Button onClick={() => setOpen(false)}>Save </Button>
-            </form>
           </Modal.Body>
         </Modal>
       )}

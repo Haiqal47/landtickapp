@@ -2,11 +2,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import Hero from "../components/Hero";
 import MainContent from "../components/MainContent";
+import { setAuthToken } from "../config/api";
 
 const styles = {
   Body: {
     backgroundImage: "linear-gradient(to right, #EC7AB7, #EC7A7A)",
-    height: "150vh",
+    minHeight: "100vh",
   },
 };
 

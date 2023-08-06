@@ -1,9 +1,9 @@
 .head {
   padding-top: 100px;
+  margin-bottom: 70px;
   display: flex;
   justify-content: center;
 }
 .form {
-  padding-top: 50px;
   width: 70%;
 }

@@ -51,7 +51,7 @@ function ShowAddTicket() {
 
       const response = await API.post("/ticket", formData);
 
-      navigate("/admin");
+      navigate("/");
     } catch (error) {
       console.log(form);
       console.log(error);
@@ -60,15 +60,15 @@ function ShowAddTicket() {
 
   return (
     <div className={cssAT.head}>
-      <div>Tambah Tiket</div>
       <div className={cssAT.form}>
+        <h2 className="mb-4">Tambah Tiket</h2>
         <form onSubmit={(e) => handleSubmit.mutate(e)}>
           <div>
             <input
               onChange={handleChange}
               value={form.name_train}
               name="name_train"
-              className="w-100"
+              className="w-100 p-1 px-2"
               type="text"
               placeholder="Nama Kereta"
             />
@@ -77,6 +77,12 @@ function ShowAddTicket() {
             onChange={handleChange}
             value={form.type_train}
             name="type_train"
+            style={{
+              width: "100%",
+              padding: "5px",
+              marginTop: "15px",
+              marginBottom: "15px",
+            }}
           >
             <option hidden className="w-100 my-3">
               Jenis Kereta
@@ -92,7 +98,7 @@ function ShowAddTicket() {
               value={form.start_date}
               id="start_date"
               name="start_date"
-              className="w-100"
+              className="w-100 p-1 px-2"
               type="date"
             />
           </div>
@@ -100,7 +106,7 @@ function ShowAddTicket() {
             onChange={handleChange}
             value={form.start_station_id}
             name="start_station_id"
-            className="w-100 my-3"
+            className="w-100 my-3 p-1 px-2"
           >
             <option value="" hidden>
               Stasiun Keberangkatan
@@ -117,7 +123,7 @@ function ShowAddTicket() {
               onChange={handleChange}
               value={form.start_time}
               name="start_time"
-              className="w-100"
+              className="w-100 p-1 px-2"
               type="time"
               placeholder="Jam Keberangkatan"
             />
@@ -126,11 +132,9 @@ function ShowAddTicket() {
             onChange={handleChange}
             value={form.destination_station_id}
             name="destination_station_id"
-            className="w-100 my-3"
+            className="w-100 my-3 p-1 px-2"
           >
-            <option value="" hidden>
-              Stasiun Tujuan
-            </option>
+            <option hidden>Stasiun Tujuan</option>
             {station &&
               station.map((data, index) => (
                 <option key={index} value={data.id}>
@@ -143,7 +147,7 @@ function ShowAddTicket() {
               onChange={handleChange}
               value={form.arrival_time}
               name="arrival_time"
-              className="w-100"
+              className="w-100 p-1 px-2"
               type="time"
               placeholder="Jam Tiba"
             />
@@ -153,7 +157,7 @@ function ShowAddTicket() {
               onChange={handleChange}
               value={form.price}
               name="price"
-              className="w-100 my-3"
+              className="w-100 my-3 p-1 px-2"
               type="number"
               placeholder="Harga Tiket"
             />
@@ -163,14 +167,20 @@ function ShowAddTicket() {
               onChange={handleChange}
               value={form.qty}
               name="qty"
-              className="w-100 "
+              className="w-100 p-1 px-2"
               type="number"
               placeholder="Qty"
             />
           </div>
-          <Button type="submit" className="my-3">
-            Save
-          </Button>
+          <div className="d-flex justify-content-end">
+            <Button
+              variant="dark"
+              type="submit"
+              className="my-3 d-flex justify-content-end"
+            >
+              Save
+            </Button>
+          </div>
         </form>
       </div>
     </div>

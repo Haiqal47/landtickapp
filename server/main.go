@@ -4,8 +4,6 @@ import (
 	"backend/database"
 	"backend/pkg/mysql"
 	"backend/routes"
-	"fmt"
-	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
@@ -33,8 +31,8 @@ func main() {
 
 	e.Static("/uploads", "./uploads")
 
-	var PORT = os.Getenv("PORT")
+	// var PORT = os.Getenv("PORT")
 
-	fmt.Println("Server running on localhost: " + PORT)
-	e.Logger.Fatal(e.Start(":" + PORT))
+	// fmt.Println("Server running on localhost: " + PORT)
+	e.Logger.Fatal(e.Start("localhost:5000"))
 }
